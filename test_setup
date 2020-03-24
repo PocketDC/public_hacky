@@ -1,0 +1,44 @@
+#!/bin/bash
+set -xv
+PS3="Whatchoo wanna do? #"
+
+
+# installing sublime-test including GPG keys, https transport, and repo source
+sublime () {
+	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -	
+	apt-get install apt-transport-https
+	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+	apt-get update -y
+	apt-get install -y sublime-text
+}
+
+# creating SSL bypass rules for the intercept while on-site
+sublime_ssl_bypass () {
+	echo "Acquire::https::download.sublimetext.com::Verify-Peer "false;"" >> /etc/apt/apt.conf/80ssl-exceptions
+	echo "Acquire::https::download.sublimetext.com::Verify-Host "false;"" >> /etc/apt/apt.conf/80ssl-exceptions
+
+}
+
+echo "=====Would you like to install sublime text?====="
+select choice in "Yes" "No"; do
+	case $choice in
+		Yes ) 
+			echo "this works" && select secondchoice in "Yes2" "No2"; do
+				case $secondchoice in
+					Yes ) 
+						echo "nested yes works"; break;;
+					No ) 
+						echo "nested no works"; break;;
+				esac
+			done
+			;;
+		No ) echo "this also works"; break;;
+	esac
+done
+#		Yes ) echo "Do you need to bypass the SSL intercept?" && select choice2 in "Yes" "No"; do
+#				case $choice2 in
+#					Yes ) sublime_ssl_bypass && sublime; break 2;;
+#					No ) break 2;;
+#		No ) break;;
+#	esac
+#done
