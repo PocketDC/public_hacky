@@ -13,7 +13,7 @@ aliases () {
 	touch /root/.bash_aliases
 	echo -e "\n# listing directories all nice like
 	alias ll='ls -l'
-	alias la='ls -la'" | tee /root/.bash_aliases
+	alias la='ls -la'" | tee -a /root/.bash_aliases
 }
 
 echo "=====Do you want to create some aliases?====="
@@ -28,7 +28,7 @@ done
 ## Regex for grepping for ip addresses
 regex () {
 	echo -e "\n# environmental variable for ip address grepping
-export IPREGEX='[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'" | tee /root/.bashrc
+export IPREGEX='[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'" | tee -a /root/.bashrc
 }
 
 echo "=====Would you like to create a regex for grepping for ip addresses?====="
@@ -43,14 +43,13 @@ done
 sublime () {
 	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -	
 	apt-get install apt-transport-https
-	echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
+	echo "deb https://download.sublimetext.com/ apt/stable/" | tee -a /etc/apt/sources.list.d/sublime-text.list
 	apt-get update -y
 	apt-get install -y sublime-text
 }
 
 # creating SSL bypass rules for the intercept while on-site
 sublime_ssl_bypass () {
-	touch /etc/apt/apt.conf/80ssl-exceptions
 	echo -e 'Acquire::https::download.sublimetext.com::Verify-Peer "false";
 Acquire::https::download.sublimetext.com::Verify-Host "false";' | tee /etc/apt/apt.conf.d/80ssl-exceptions
 
@@ -81,7 +80,7 @@ done
 echo "=====installing chromium====="
 apt-get install chromium
 # change the chromium flags to be able to run appropriately, run as root and disable web security
-echo "export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --password-store=basic --no-sandbox --user-data-dir --disable-web-security"" | tee /etc/chromium.d/default-flags
+echo "export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --password-store=basic --no-sandbox --user-data-dir --disable-web-security"" | tee -a /etc/chromium.d/default-flags
 
 ## install terminator
 echo "=====installing terminator====="
