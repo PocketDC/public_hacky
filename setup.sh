@@ -186,3 +186,7 @@ git clone https://github.com/maurosoria/dirsearch.git /opt/dirsearch/
 # mitm6
 echo "=====grabbing mitm6 repo====="
 git clone https://github.com/fox-it/mitm6.git /opt/mitm6/
+
+# SIET
+echo "=====grabbing SIET repo====="
+git clone https://github.com/Sab0tag3d/SIET.git /opt/SIET/
