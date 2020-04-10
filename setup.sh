@@ -24,7 +24,8 @@ aliases () {
 	touch /root/.bash_aliases
 	echo -e "\n# listing directories all nice like
 	alias ll='ls -l'
-	alias la='ls -la'" | tee -a /root/.bash_aliases
+	alias la='ls -la' 
+	alias dirsearch='python3 /opt/dirsearch/dirsearch.py'" | tee -a /root/.bash_aliases
 }
 
 echo "=====Do you want to create some aliases?====="
