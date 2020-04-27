@@ -92,7 +92,7 @@ done
 echo "=====installing chromium====="
 apt-get install chromium
 # change the chromium flags to be able to run appropriately, run as root and disable web security
-echo 'export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --password-store=basic --ignore-certificate-errors --no-sandbox --user-data-dir --disable-web-security"' | tee -a /etc/chromium.d/default-flags
+echo 'export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --password-store=basic --ignore-certificate-errors --no-sandbox --user-data-dir --disable-web-security --proxy-server=127.0.0.1:8088 --proxy-bypass-list=<-loopback>"' | tee -a /etc/chromium.d/default-flags
 
 ## install terminator
 echo "=====installing terminator====="
