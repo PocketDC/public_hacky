@@ -3,9 +3,10 @@ import numpy
 import ipaddress
 import sys
 
-parser = argparse.ArgumentParser(description='Split a list of hosts or CIDR ranges into a designated number of files \
-												with equal numbers of hosts. Input file must be line-separated IP addresses \
-												or valid CIDR ranges only')
+parser = argparse.ArgumentParser(description=\
+	'Split a list of hosts or CIDR ranges into a designated number of files \
+	with equal numbers of hosts. Input file must be line-separated IP addresses \
+	or valid CIDR ranges only')
 parser.add_argument('-l', '--list', metavar='', required=True, help='host list for input')
 parser.add_argument('-s', '--splits', metavar='', required=True, type=int, help='number of split lists requested')
 
